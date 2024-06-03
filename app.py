@@ -111,6 +111,10 @@ if "suggested_subject" not in st.session_state:
 if "new_post" not in st.session_state:
     st.session_state.new_post = ""
 
+def subject_changed():
+    st.session_state.suggested_subject = st.session_state.text_input_suggested_subject
+    st.session_state.new_post = ""
+
 if __name__ == "__main__":
     st.set_page_config(
         page_title="Solar PostUp ✍",
@@ -156,19 +160,21 @@ Only three steps are needed:
 
             print(posts_text)
 
-        with st.form("generate_subject_form"):
-            generate_subject_buttom_title = "Generate Post Subject"
-            if st.session_state.suggested_subject:
-                generate_subject_buttom_title = "Regenerate Post Subject"
+       
+        generate_subject_buttom_title = "Generate Post Subject"
+        if st.session_state.suggested_subject:
+            generate_subject_buttom_title = "Regenerate Post Subject"
 
-            if st.form_submit_button(generate_subject_buttom_title):
-                with st.spinner("Generating Post Subject ..."):
-                    st.session_state.new_post = ""
-                    st.session_state.suggested_subject = get_subject(posts_text)
+        if st.button(generate_subject_buttom_title):
+            with st.spinner("Generating Post Subject ..."):
+                st.session_state.new_post = ""
+                st.session_state.suggested_subject = get_subject(posts_text)
 
-            st.session_state.suggested_subject = st.text_input(
-                "Proposed Subject:", st.session_state.suggested_subject
-            )
+        st.session_state.suggested_subject = st.text_input(
+            "Proposed Subject:", st.session_state.suggested_subject,
+            key="text_input_suggested_subject",
+            on_change=subject_changed
+        )
 
         if st.session_state.suggested_subject:
             with st.form("generate_new_post_form"):
