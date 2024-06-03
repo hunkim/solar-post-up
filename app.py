@@ -138,7 +138,8 @@ Only three steps are needed:
 
         submitted = st.form_submit_button("Get Facebook Posts")
         if submitted:
-            with st.status("Getting Facebook Posts from {}".format(facebook_url)):
+            with st.status("Getting Facebook Posts from {}. It may take 20-30 seconds.".format(facebook_url)):
+                # 
                 st.session_state.facebook_posts = get_facebook_posts(facebook_url)
                 st.write(st.session_state.facebook_posts)
         elif st.session_state.facebook_posts:
