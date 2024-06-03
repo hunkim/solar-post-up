@@ -113,11 +113,11 @@ if "new_post" not in st.session_state:
 
 if __name__ == "__main__":
     st.set_page_config(
-        page_title="Solar Writer ✍",
+        page_title="Solar PostUp ✍",
         page_icon="✍",
         layout="wide",
     )
-    st.title("Solar Writer ✍")
+    st.title("Solar PostUp ✍")
     st.write(
         """This app generates new facebook posts based on your previous facebook posts.
 Only three steps are needed:
