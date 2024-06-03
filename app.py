@@ -185,12 +185,12 @@ Only three steps are needed:
                             st.session_state.suggested_subject, posts_text
                         )
 
-                if st.session_state.new_post:
-                    st.session_state.new_post = st.text_area(
-                        "New Post:",
-                        st.session_state.new_post,
-                        height=200 + len(st.session_state.new_post) // 5,
-                    )
+                    if st.session_state.new_post:
+                        st.session_state.new_post = st.text_area(
+                            "New Post:",
+                            st.session_state.new_post,
+                            height=200 + len(st.session_state.new_post) // 5,
+                        )
 
             if st.session_state.new_post:
                 # Add download button
